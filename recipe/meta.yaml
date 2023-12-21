@@ -10,7 +10,7 @@ source:
   sha256: e1c9af50c6e8c53bc07fdf3277ab1b90e83648c689ea73dadae7d78d1e18d752
 
 build:
-  skip: true  # [py<37]
+  skip: true  # [py<38]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
 
@@ -20,7 +20,7 @@ requirements:
     - {{ compiler('rust') }}
   host:
     - python
-    - maturin >=0.13,<0.14
+    - maturin >=1,<2
     - pip
   run:
     - python
