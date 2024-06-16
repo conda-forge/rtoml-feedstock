@@ -34,7 +34,9 @@ test:
     - dirty-equals
     - pip
     - pytest
+    - pytest-speed
   source_files:
+    - example.py
     - tests
   imports:
     - rtoml
