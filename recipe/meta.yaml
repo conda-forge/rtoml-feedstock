@@ -40,6 +40,8 @@ test:
     - tests
   imports:
     - rtoml
+  script_env:
+    - PYTEST_ADDOPTS=-k "not datetime_invalid"  # [python_impl == 'pypy']
   commands:
     - pip check
     - coverage run --source rtoml --branch -m pytest -vv --tb=long
