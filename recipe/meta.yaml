@@ -1,4 +1,4 @@
-{% set version = "0.10.0" %}
+{% set version = "0.11.0" %}
 
 package:
   name: rtoml
@@ -6,12 +6,12 @@ package:
 
 source:
   url: https://pypi.io/packages/source/r/rtoml/rtoml-{{ version }}.tar.gz
-  sha256: e1c9af50c6e8c53bc07fdf3277ab1b90e83648c689ea73dadae7d78d1e18d752
+  sha256: a1d1ec36261c47169934a6c0f713a6cdf917604b3f72a72a809c3a68384255d4
 
 build:
   skip: true  # [py<38]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 2
+  number: 0
 
 requirements:
   build:
