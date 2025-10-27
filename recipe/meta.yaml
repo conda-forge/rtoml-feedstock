@@ -9,8 +9,10 @@ source:
   sha256: 662e56bd5953ee7ebcc5798507ae90daa329940a5d5157a48f3d477ebf99c55b
 
 build:
-  skip: true  # [py<38]
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  script:
+    - set PYO3_USE_ABI3_FORWARD_COMPATIBILITY=1  # [win and py==314]
+    - export PYO3_USE_ABI3_FORWARD_COMPATIBILITY=1  # [unix and py==314]
+    - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 3
 
 requirements:
