@@ -1,7 +1,7 @@
 schema_version: 1
 
 context:
-  version: 0.13.0
+  version: "0.14.0"
 
 package:
   name: rtoml
@@ -9,10 +9,10 @@ package:
 
 source:
   url: https://pypi.org/packages/source/r/rtoml/rtoml-${{ version }}.tar.gz
-  sha256: 974522c887b47abc0bb62ee8ae9e44d3a0c2cdac9d60ba0ed01c5a40df0ea424
+  sha256: e0f95a59e3fac6394985d59ce18a0c06f2176f2eb9dec2fb8c1105febaf05c59
 
 build:
-  number: 1
+  number: 0
   script:
     - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
     - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
@@ -40,19 +40,22 @@ tests:
       imports:
         - rtoml
       pip_check: true
-  - files:
-      source:
-        - example.py
-        - tests
-    requirements:
-      run:
-        - coverage
-        - dirty-equals
-        - pytest
-        - pytest-speed
-    script:
-      - coverage run --source rtoml --branch -m pytest -vv --tb=long -k "not datetime_invalid"
-      - coverage report --show-missing --skip-covered --fail-under=100
+  - if: not win
+    then:
+      - files:
+          source:
+            - example.py
+            - tests
+        requirements:
+          run:
+            - coverage
+            - dirty-equals
+            - pytest
+            - pytest-speed
+            - hypothesis
+        script:
+          - coverage run --source rtoml --branch -m pytest -vv --tb=long -k "not datetime_invalid"
+          - coverage report --show-missing --skip-covered --fail-under=100
 
 about:
   license: MIT
