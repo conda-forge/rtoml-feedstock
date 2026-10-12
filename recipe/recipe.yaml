@@ -50,6 +50,7 @@ tests:
         - dirty-equals
         - pytest
         - pytest-speed
+        - hypothesis
     script:
       - coverage run --source rtoml --branch -m pytest -vv --tb=long -k "not datetime_invalid"
       - coverage report --show-missing --skip-covered --fail-under=100
